@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"ng-app="sketch">
+<head>
+	<meta charset="UTF-8">
+	<title>sketch</title>
+	<link rel="stylesheet" href="index.css">
+	<script src="js/angular.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body ng-controller="sketchController">
+<div id="top">
+    <p>Sketch</p>
+    <ul>
+			<li ng-repeat="(key, value) in tools" ng-click="settool(value)"ng-class="{active:tool==value}">
+				<span>{{key}}</span>
+				<span ng-class="value"></span>
+			</li>
+	</ul>
+
+</div>
+<div id="controls">
+	
+	
+<!-- 填充 -->
+	<div ng-click="setStyle('fill')"ng-class="{active:csState.style=='fill'}"id="tianchong">填充</div>
+	 <!-- <input type="color"ng-model="csState.fillStyle">  -->
+	<div class="yanse"id="yanse"ng-repeat="(key, value) in colors" ng-click="csState.fillStyle=value"ng-model="csState.fillStyle">
+
+		<span ng-class="value">{{key}}</span>
+	</div>
+
+
+<!-- 画线 -->
+	<div  ng-click="setStyle('stroke')"ng-class="{active:csState.style=='stroke'}"id="tianchong">画线</div>
+    <!-- <input type="color"ng-model="csState.strokeStyle"> -->
+	<div class="yanse"id="yanse"ng-repeat="(key, value) in colors" ng-click="csState.strokeStyle=value"ng-model="csState.strokeStyle">
+
+		<span ng-class="value">{{key}}</span>
+	</div>
+
+
+<!-- 线宽 -->
+    <div id="tianchong">
+    	线宽
+    	
+    </div>
+    <input type="range"min="1"max=""step="1"ng-model="csState.lineWidth">
+  <!--  <div class="xiankuan">
+   	  <div class="state"ng-model="csState.lineWidth"ng-click="left()"></div>
+   </div> -->
+  
+    
+
+	<!-- <input ng-model="canvasWH.width"type="range"min="400"max="800"step="1">
+	<input ng-model="canvasWH.height"type="range"min="400"max="800"step="1"> -->
+		
+		<!-- <input type="text"ng-model="fnname"> -->
+</div>
+	<div id="drawregion">
+		<canvas id="canvas"width='{{canvasWH.width}}'height='{{canvasWH.height}}'></canvas>
+		
+	</div>
+<div id="bottom">
+	<div id="dingbu">回退</div>
+    <a ng-click="save($event)" id="dingbu">保存</a>
+     <div ng-click="newSketch()" id="dingbu">新建</div>
+</div>
+</body>
+</html>
